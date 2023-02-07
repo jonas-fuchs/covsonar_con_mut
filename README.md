@@ -16,12 +16,19 @@ python3 path/to/covsonar/sonar.py match --db mydb > out.csv
 git clone https://github.com/jonas-fuchs/covsonar_con_mut
 cd covsonar_con_mut
 
-#run the script:
+# run the script:
 python3 mutfreq.py out.csv > results.tabular
 
 # optional arguments:
--l/--lineages # define lineages to calculate the consensus mutations on, if none are given the whole db is used. Multiple lineages can be separated by a comma
--p/--profile # calculate aa or dna consensus
--t/--threshold # 0-1 frequency threshold to be considered
--c/--combine-lineages # True or False, if True calculates one consensus profile for all given lineages. Ignored if no lineages are given
+-l/--lineages
+# define lineages to calculate the consensus mutations on.
+# If none are given the whole db is used.
+# Multiple lineages can be separated by a comma
+-p/--profile
+# calculate aa or dna consensus
+-t/--threshold
+# 0-1 frequency threshold to be considered
+-c/--combine-lineages
+# True or False, if True calculates one consensus profile for all given lineages.
+# Ignored if no lineages are given
 ```
