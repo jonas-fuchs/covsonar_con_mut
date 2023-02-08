@@ -8,15 +8,16 @@ def calculate_consensus_mutations(csv, lineages = "", combine_lineages = False, 
 
     covsonar_df = pd.read_csv(csv)
 
-    def calc_freq(data, profile):
+    def calc_freq(df, profile):
 
         frequencys = dict()
         consensus_mutations = dict()
-
-        if profile == "dna":
-            mut_profiles = data["dna_profile"]
-        elif profile == "aa":
-            mut_profiles = data["aa_profile"]
+        allowed_dna = ["DNA", "dna", "DNS", "dns"]
+        allowed_as = ["aa", "as", "AA", "AS", "aminoacid"]
+        if profile in allowed_dna:
+            mut_profiles = df["dna_profile"]
+        elif profile in allowed_as:
+            mut_profiles = df["aa_profile"]
         else:
             sys.exit("no such profile: use aa or dna")
 
@@ -34,7 +35,7 @@ def calculate_consensus_mutations(csv, lineages = "", combine_lineages = False, 
         print("mutation", "frequency", sep = "\t")
         for mut in frequencys:
             frequencys[mut] = frequencys[mut]/n_entrys
-            if threshold >= 1:
+            if threshold > 1 or threshold < 0:
                 sys.exit("threshold must be between 0 and 1")
             if frequencys[mut] >= threshold:
                 print(mut, round(frequencys[mut],2), sep = "\t")
