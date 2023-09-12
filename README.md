@@ -1,9 +1,8 @@
 # Calculate SARS-CoV-2 lineage-defining consensus mutations on the basis of a covsonar db
 
-This light script relies on:
-* python3
+This light python script relies on:
 * pandas
-* argparse
+
 
 Installation and running:
 
